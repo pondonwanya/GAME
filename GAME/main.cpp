@@ -3,6 +3,7 @@
 #include "entity.h"
 #include "Projectile.h"
 #include "enemy.h"
+#include "random.h"
 
 using namespace std;
 #include <iostream>
@@ -81,6 +82,12 @@ int main()
 		//Clear screen
 		window.clear();
 
+		//Fires Missle (Space Bar)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
+		{
+			enemy1.rect.setPosition(generateRandom(window.getSize().x),generateRandom(window.getSize().y));
+			enemyArrey.push_back(enemy1);
+		}
 
 		//Fires Missle (Space Bar)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -107,7 +114,7 @@ int main()
 		{
 			enemyArrey[counter].update(); 
 			enemyArrey[counter].updateMovement();
-			window.draw(enemyArrey[counter].rect);
+			//window.draw(enemyArrey[counter].rect);
 			window.draw(enemyArrey[counter].sprite);
 
 			counter++;
