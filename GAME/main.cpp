@@ -6,6 +6,15 @@
 
 using namespace std;
 #include <iostream>
+
+int gemerateRandpm(int max)
+{
+	int randomNumber = rand();
+	float random = (randomNumber % max) + 1 ;
+	int myRandom = random;
+	return myRandom;
+}
+
 int main()
 {
 
@@ -32,13 +41,7 @@ int main()
 	playerSprite.setOrigin(sf::Vector2f(playerSprite.getTexture()->getSize().x /8, playerSprite.getTexture()->getSize().y/2));
 
 	sf::Texture Enemy;
-	Sprite.loadFromFile("png/enemy.jpg");
-
-	sf::Sprite playerSprite;
-	playerSprite.setTexture(Sprite);
-	playerSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
-	playerSprite.setTextureRect(sf::IntRect(0, 1080, 641, 542));
-	playerSprite.setOrigin(sf::Vector2f(playerSprite.getTexture()->getSize().x / 8, playerSprite.getTexture()->getSize().y / 2));
+	Enemy.loadFromFile("png/enemy.png");
 
 	// class Object
 	class player Player1;
@@ -58,9 +61,9 @@ int main()
 	//Enery Object
 	class enemy enemy1;
 	enemy1.sprite.setTexture(Enemy);
-	enemy1.sprite.setTextureRect(sf::IntRect(0,0,32,32));
+	//enemy1.sprite.setTextureRect(sf::IntRect(0,0,32,32));
 
-	enemy1.rect.setPosition(400, 200);
+	enemy1.rect.setPosition(600, 200);
 	enemyArrey.push_back(enemy1);
 
 
@@ -110,7 +113,7 @@ int main()
 		counter = 0;
 		for (iter4 = enemyArrey.begin(); iter4 != enemyArrey.end(); iter4++)
 		{
-			//enemyArrey[counter].update();  /
+			enemyArrey[counter].update();  
 			window.draw(enemyArrey[counter].rect);
 			window.draw(enemyArrey[counter].sprite);
 

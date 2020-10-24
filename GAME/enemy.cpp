@@ -2,17 +2,19 @@
 
 enemy::enemy()
 {
-	rect.setSize(sf::Vector2f(641, 535));
+	rect.setSize(sf::Vector2f(32, 32));
 	rect.setPosition(400, 200);
 	rect.setFillColor(sf::Color::Blue);
-	sprite.setTextureRect(sf::IntRect(0, 0, 641, 535));
+	sprite.setTextureRect(sf::IntRect(49*4, 0,49,49 ));
 
 }
 
-/*void enemy::update()
+void enemy::update()
 {
 	sprite.setPosition(rect.getPosition());
 }
+
+/*
 
 void enemy::updateMovement()
 {
