@@ -7,14 +7,6 @@
 using namespace std;
 #include <iostream>
 
-int gemerateRandpm(int max)
-{
-	int randomNumber = rand();
-	float random = (randomNumber % max) + 1 ;
-	int myRandom = random;
-	return myRandom;
-}
-
 int main()
 {
 
@@ -113,7 +105,8 @@ int main()
 		counter = 0;
 		for (iter4 = enemyArrey.begin(); iter4 != enemyArrey.end(); iter4++)
 		{
-			enemyArrey[counter].update();  
+			enemyArrey[counter].update(); 
+			enemyArrey[counter].updateMovement();
 			window.draw(enemyArrey[counter].rect);
 			window.draw(enemyArrey[counter].sprite);
 

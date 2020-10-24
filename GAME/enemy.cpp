@@ -4,7 +4,7 @@ enemy::enemy()
 {
 	rect.setSize(sf::Vector2f(32, 32));
 	rect.setPosition(400, 200);
-	rect.setFillColor(sf::Color::Blue);
+	rect.setFillColor(sf::Color::Black);
 	sprite.setTextureRect(sf::IntRect(49*4, 0,49,49 ));
 
 }
@@ -14,48 +14,41 @@ void enemy::update()
 	sprite.setPosition(rect.getPosition());
 }
 
-/*
-
 void enemy::updateMovement()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-		rect.move(-movementSpeed, 0);
-		faceRight = 0;
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		sprite.setOrigin(sf::Vector2f(sprite.getTexture()->getSize().x / 8, sprite.getTexture()->getSize().y / 2));
-		direction = 3;
+	if (direction==1)  // Up
+	{
+		rect.move(0,-movementSpeed);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-		rect.move(movementSpeed, 0);
-		faceRight = 1;
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		sprite.setOrigin(sf::Vector2f(sprite.getTexture()->getSize().x / 8 - 600, sprite.getTexture()->getSize().y / 2));
-		direction = 4;
+	else if (direction == 2)  // Down
+	{
+		rect.move(0,movementSpeed);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-		rect.move(0, -movementSpeed);
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		direction = 1;
+	else if (direction == 3)    // Left
+	{
+		rect.move( -movementSpeed,0);
+		sprite.setTextureRect(sf::IntRect((49*4)+49*counterRunning, 0, 49, 49));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-		rect.move(0, movementSpeed);
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		direction = 2;
+	else if (direction == 4)    // Right
+	{
+		rect.move(movementSpeed,0);
+		sprite.setTextureRect(sf::IntRect((49*6)+49*counterRunning, 0,49, 49));
 	}
-
+	else
+	{
+		// No movement
+	}
 
 	counterRunning++;
-	if (counterRunning == 7)
+	if (counterRunning == 1)
 	{
 		counterRunning = 0;
 	}
 
-	if (faceRight) {
-		sprite.setScale(0.1, 0.1);
+	counter++;
+	if (counter >= movementLength)
+	{
+		direction = generateRandom(10);
+		counter = 0;
 	}
-	else {
-		sprite.setScale(-0.1, 0.1);
-	}
-
-
-}*/
+}
