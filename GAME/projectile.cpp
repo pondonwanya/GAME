@@ -2,7 +2,7 @@
 
 projectile::projectile()
 {
-	rect.setSize(sf::Vector2f(10,10));
+	rect.setSize(sf::Vector2f(15,15));
 	rect.setPosition(0, 0);
 	rect.setFillColor(sf::Color::Green);
 }
@@ -25,4 +25,11 @@ void projectile::update()
 	{
 		rect.move(movementSpeed, 0);
 	}
+
+	counterLifetime++;
+	if (counterLifetime >= lifeTime)
+	{
+		destroy = true;
+	}
+
 }

@@ -10,7 +10,10 @@ using namespace std;
 
 int main()
 {
-
+	// Varible
+	sf::Clock clock;
+	sf::Clock clock2;
+	sf::Clock clock3;
 	float playerMovementSpeed = 0.3;
 	bool faceRight = 1;
 	int counterRunning = 0;
@@ -82,7 +85,62 @@ int main()
 		//Clear screen
 		window.clear();
 
-		//Fires Missle (Space Bar)
+		// Clock
+		sf::Time elapsed1 = clock.getElapsedTime();
+		sf::Time elapesed2 = clock.getElapsedTime();
+		sf::Time elapsed3 = clock.getElapsedTime();
+
+		//Projectile Collides with Enemy
+		counter = 0;
+		for (iter = projectileArrey.begin(); iter != projectileArrey.end(); iter++)
+		{
+			counter2 = 0;
+			for (iter4 = enemyArrey.begin(); iter4 != enemyArrey.end(); iter4++)
+			{
+				if (projectileArrey[counter].rect.getGlobalBounds().intersects(enemyArrey[counter2].rect.getGlobalBounds()))
+				{
+					//cout << "Collision" << endl;
+
+					projectileArrey[counter].destroy = true;
+					enemyArrey[counter2].hp-=projectileArrey[counter].attactDamagr;
+					if (enemyArrey[counter2].hp <= 0)
+					{
+						enemyArrey[counter2].alive = false;
+					}
+				} 
+
+					counter2++;
+			}
+			counter++;
+		} 
+
+		//Delete Dead Enemy
+		counter = 0;
+		for (iter4 = enemyArrey.begin(); iter4 != enemyArrey.end(); iter4++)
+		{
+			if (enemyArrey[counter].alive == false)
+			{
+				cout << "Dead" << endl;
+				enemyArrey.erase(iter4);
+				break;
+			}
+			counter++;
+		}
+
+		//Delete Projectile
+		counter = 0;
+		for (iter = projectileArrey.begin(); iter != projectileArrey.end(); iter++)
+		{
+			if (projectileArrey[counter].destroy == true)
+			{
+				//cout << "proDead" << endl;
+				projectileArrey.erase(iter);
+				break;
+			}
+			counter++;
+		}
+
+		//Spawn Enemies (Y-Key)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
 		{
 			enemy1.rect.setPosition(generateRandom(window.getSize().x),generateRandom(window.getSize().y));
@@ -90,13 +148,18 @@ int main()
 		}
 
 		//Fires Missle (Space Bar)
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (elapsed1.asSeconds() >= 0.1)
 		{
-			//projectile1.rect.setPosition(Player1.rect.getPosition().x + Player1.rect.getSize().x/-projectile1.rect.getSize().x/2,Player1.rect.getPosition().y + Player1.rect.getSize().y/2-projectile1.rect.getSize().y/2);
-			//projectile1.rect.setPosition(Sprite.rect.getPosition().x/20-1000 , Player1.rect.getPosition().y );
-			projectile1.rect.setPosition(Player1.rect.getPosition());
-			projectile1.direction = Player1.direction;
-			projectileArrey.push_back(projectile1);
+			clock.restart();
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			{
+				projectile1.rect.setPosition(Player1.rect.getPosition().x + Player1.rect.getSize().x / -projectile1.rect.getSize().x / 2, Player1.rect.getPosition().y + Player1.rect.getSize().y / 2 - projectile1.rect.getSize().y / 2);
+				//projectile1.rect.setPosition(Sprite.rect.getPosition().x/20-1000 , Player1.rect.getPosition().y );
+				projectile1.rect.setPosition(Player1.rect.getPosition());
+				projectile1.direction = Player1.direction;
+				projectileArrey.push_back(projectile1);
+			}
 		}
 
 		//Draw Projectiles
