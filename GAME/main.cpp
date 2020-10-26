@@ -90,6 +90,25 @@ int main()
 		sf::Time elapesed2 = clock.getElapsedTime();
 		sf::Time elapsed3 = clock.getElapsedTime();
 
+
+		if (elapesed2.asSeconds() >= 0.3)
+		{
+			clock2.restart();
+
+			//Enemy Collides with Player (Player takes damage)
+			counter = 0;
+			for (iter4 = enemyArrey.begin(); iter4 != enemyArrey.end(); iter4++)
+			{
+				if (Player1.rect.getGlobalBounds().intersects(enemyArrey[counter].rect.getGlobalBounds()))
+				{
+					Player1.hp -= enemyArrey[counter].attactDamage;
+				}
+				counter++;
+			}
+		}
+
+		cout << Player1.hp << endl;
+
 		//Projectile Collides with Enemy
 		counter = 0;
 		for (iter = projectileArrey.begin(); iter != projectileArrey.end(); iter++)
