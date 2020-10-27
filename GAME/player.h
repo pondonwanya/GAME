@@ -6,7 +6,7 @@ class player : public entity
 {
 public:
 
-	float movementSpeed = 15;
+	int movementSpeed = 5;
 	int attactDamage = 5;
 	bool faceRight = 1;
 	int counterRunning = 0;

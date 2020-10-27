@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "enemy.h"
 #include "random.h"
+#include "textDisplay.h"
 
 using namespace std;
 #include <iostream>
@@ -38,6 +39,14 @@ int main()
 
 	sf::Texture Enemy;
 	Enemy.loadFromFile("png/enemy.png");
+	
+	// Cteate a graphical text to display
+	sf::Font font;
+	font.loadFromFile("arial/arial.ttf");
+
+	sf::Text text("Game", font, 25);
+	text.setCharacterSize(50);
+	text.setPosition(300, 300);
 
 	// class Object
 	class player Player1;
@@ -51,7 +60,7 @@ int main()
 	class projectile projectile1;
 
 	//Enemy Vector Arrey
-	vector<enemy>::const_iterator(iter4);
+	vector<enemy>::const_iterator iter4;
 	vector<enemy> enemyArrey;
 
 	//Enery Object
@@ -62,6 +71,15 @@ int main()
 	enemy1.rect.setPosition(600, 200);
 	enemyArrey.push_back(enemy1);
 
+
+	//Text Vector Arrey
+	vector<textDisplay>::const_iterator iter8;
+	vector<textDisplay> textDisplayArrey;
+
+	//Text Display Object
+	class textDisplay textDisplay1;
+	textDisplay1.text.setFont(font);
+	textDisplayArrey.push_back(textDisplay1);
 
 
 	//Start the game loop
@@ -87,11 +105,11 @@ int main()
 
 		// Clock
 		sf::Time elapsed1 = clock.getElapsedTime();
-		sf::Time elapesed2 = clock.getElapsedTime();
+		sf::Time elapsed2 = clock.getElapsedTime();
 		sf::Time elapsed3 = clock.getElapsedTime();
 
 
-		if (elapesed2.asSeconds() >= 0.3)
+		if (elapsed2.asSeconds() >= 0.1)
 		{
 			clock2.restart();
 
@@ -101,6 +119,11 @@ int main()
 			{
 				if (Player1.rect.getGlobalBounds().intersects(enemyArrey[counter].rect.getGlobalBounds()))
 				{
+					/*//Text Display
+					textDisplay1.text.setString(to_string(enemyArrey[counter].attactDamage));
+					textDisplay1.text.setPosition(Player1.rect.getPosition().x, Player1.rect.getPosition().y);
+					textDisplayArrey.push_back(textDisplay1);*/
+
 					Player1.hp -= enemyArrey[counter].attactDamage;
 				}
 				counter++;
@@ -119,9 +142,14 @@ int main()
 				if (projectileArrey[counter].rect.getGlobalBounds().intersects(enemyArrey[counter2].rect.getGlobalBounds()))
 				{
 					//cout << "Collision" << endl;
-
 					projectileArrey[counter].destroy = true;
-					enemyArrey[counter2].hp-=projectileArrey[counter].attactDamagr;
+					
+					//Text Display
+					textDisplay1.text.setString(to_string(projectileArrey[counter].attactDamage));
+					textDisplay1.text.setPosition(enemyArrey[counter2].rect.getPosition().x, enemyArrey[counter2].rect.getPosition().y);
+					textDisplayArrey.push_back(textDisplay1);
+					
+					enemyArrey[counter2].hp-=projectileArrey[counter].attactDamage;
 					if (enemyArrey[counter2].hp <= 0)
 					{
 						enemyArrey[counter2].alive = false;
@@ -154,6 +182,18 @@ int main()
 			{
 				//cout << "proDead" << endl;
 				projectileArrey.erase(iter);
+				break;
+			}
+			counter++;
+		}
+
+		// Delete Text Display
+		counter = 0;
+		for (iter8 = textDisplayArrey.begin(); iter8 != textDisplayArrey.end(); iter8++)
+		{
+			if (textDisplayArrey[counter].destroy == true)
+			{
+				textDisplayArrey.erase(iter8);
 				break;
 			}
 			counter++;
@@ -210,6 +250,16 @@ int main()
 		window.draw(Player1.sprite);
 		//window.draw(Player1.rect);
 
+		//Draw Text
+		counter = 0;
+		for (iter8 = textDisplayArrey.begin(); iter8 != textDisplayArrey.end(); iter8++)
+		{
+			textDisplayArrey[counter].update();
+			window.draw(textDisplayArrey[counter].text);
+			counter++;
+		}
+
+		// Update the window
 		window.display();
 	}
 
