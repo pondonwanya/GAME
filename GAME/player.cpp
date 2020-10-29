@@ -11,6 +11,7 @@ player::player()
 
 void player::update()
 {
+	sprite.setOrigin(rect.getSize().x/2,rect.getSize().y/2);
 	sprite.setPosition(rect.getPosition());
 }
 
@@ -20,14 +21,12 @@ void player::updateMovement()
 		rect.move(-movementSpeed, 0);
 		faceRight = 0;
 		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		sprite.setOrigin(sf::Vector2f(sprite.getTexture()->getSize().x / 8  , sprite.getTexture()->getSize().y / 2));
 		direction = 3;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 		rect.move(movementSpeed, 0);
 		faceRight = 1;
 		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		sprite.setOrigin(sf::Vector2f(sprite.getTexture()->getSize().x / 8 -600, sprite.getTexture()->getSize().y / 2));
 		direction = 4;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {

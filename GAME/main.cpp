@@ -5,6 +5,8 @@
 #include "enemy.h"
 #include "random.h"
 #include "textDisplay.h"
+#include "pickUp.h"
+#include "wall.h"
 
 using namespace std;
 #include <iostream>
@@ -36,6 +38,9 @@ int main()
 	playerSprite.setPosition(window.getSize().x/2,window.getSize().y/2);   
 	playerSprite.setTextureRect(sf::IntRect(0, 1080, 641, 542));
 	playerSprite.setOrigin(sf::Vector2f(playerSprite.getTexture()->getSize().x /8, playerSprite.getTexture()->getSize().y/2));
+
+	sf::Texture Potion;
+	Potion.loadFromFile("png/Potion1.png");
 
 	sf::Texture Enemy;
 	Enemy.loadFromFile("png/enemy.png");
@@ -71,7 +76,6 @@ int main()
 	enemy1.rect.setPosition(600, 200);
 	enemyArrey.push_back(enemy1);
 
-
 	//Text Vector Arrey
 	vector<textDisplay>::const_iterator iter8;
 	vector<textDisplay> textDisplayArrey;
@@ -79,8 +83,30 @@ int main()
 	//Text Display Object
 	class textDisplay textDisplay1;
 	textDisplay1.text.setFont(font);
-	textDisplayArrey.push_back(textDisplay1);
 
+	//Pickup Vector Arrey
+	vector<pickUp>::const_iterator iter11;
+	vector<pickUp> pickUpArrey;
+
+	//Potion Object
+	class pickUp pickUp1;
+	pickUp1.sprite.setTexture(Potion);
+	pickUp1.rect.setPosition(500, 500);
+	pickUp1.rect.setSize(sf::Vector2f(25, 32));
+	pickUpArrey.push_back(pickUp1);
+
+	pickUp1.rect.setPosition(700, 500);
+	pickUpArrey.push_back(pickUp1);
+
+	//Wall Vector Arrey
+	vector<wall>::const_iterator iter15;
+	vector<wall> wallArrey;
+
+	class wall wall1;
+	//enemy1.sprite.setTexture(Enemy);
+
+	wall1.rect.setPosition(500, 500);
+	wallArrey.push_back(wall1);
 
 	//Start the game loop
 	while (window.isOpen())
@@ -219,6 +245,17 @@ int main()
 				projectile1.direction = Player1.direction;
 				projectileArrey.push_back(projectile1);
 			}
+		}
+
+		//Draw Pickup Items
+		counter = 0;
+		for (iter11 = pickUpArrey.begin(); iter11 != pickUpArrey.end(); iter11++)
+		{
+			pickUpArrey[counter].update();
+			window.draw(pickUpArrey[counter].rect);
+			window.draw(pickUpArrey[counter].sprite);
+
+			counter++;
 		}
 
 		//Draw Projectiles
