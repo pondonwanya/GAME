@@ -42,16 +42,19 @@ int main()
 	sf::Texture Potion;
 	Potion.loadFromFile("png/Potion1.png");
 
+	sf::Texture fireBall;
+	fireBall.loadFromFile("png/fireball.png");
+
 	sf::Texture Enemy;
 	Enemy.loadFromFile("png/enemy.png");
 	
 	// Cteate a graphical text to display
 	sf::Font font;
-	font.loadFromFile("arial/arial.ttf");
+	font.loadFromFile("karmatic/ka1.ttf");
 
-	sf::Text text("Game", font, 25);
-	text.setCharacterSize(50);
-	text.setPosition(300, 300);
+	sf::Text text("Gill", font, 25);
+	text.setCharacterSize(20);
+	text.setPosition(0, 0);
 
 	// class Object
 	class player Player1;
@@ -63,6 +66,7 @@ int main()
 
 	//Projectile Object
 	class projectile projectile1;
+	projectile1.sprite.setTexture(fireBall);
 
 	//Enemy Vector Arrey
 	vector<enemy>::const_iterator iter4;
@@ -134,6 +138,21 @@ int main()
 		sf::Time elapsed2 = clock.getElapsedTime();
 		sf::Time elapsed3 = clock.getElapsedTime();
 
+		//Player collides with Pickup Item
+		counter = 0;
+		for (iter11 = pickUpArrey.begin(); iter11 != pickUpArrey.end(); iter11++)
+		{
+			if (Player1.rect.getGlobalBounds().intersects(pickUpArrey[counter].rect.getGlobalBounds()))
+			{
+				if (pickUpArrey[counter].isPotion == true) 
+				{
+					Player1.gil += pickUpArrey[counter].potionValue;
+				}
+				pickUpArrey[counter].destroy = true;
+			}
+
+			counter++;
+		}
 
 		if (elapsed2.asSeconds() >= 0.1)
 		{
@@ -194,6 +213,14 @@ int main()
 			if (enemyArrey[counter].alive == false)
 			{
 				cout << "Dead" << endl;
+
+				// Drop Potion
+				if (generateRandom(4) == 1)
+				{
+					pickUp1.rect.setPosition(enemyArrey[counter].rect.getPosition());
+					pickUpArrey.push_back(pickUp1);
+				}
+
 				enemyArrey.erase(iter4);
 				break;
 			}
@@ -220,6 +247,19 @@ int main()
 			if (textDisplayArrey[counter].destroy == true)
 			{
 				textDisplayArrey.erase(iter8);
+				break;
+			}
+			counter++;
+		}
+
+		//Delete Pickup Items
+		counter = 0;
+		for (iter11 = pickUpArrey.begin(); iter11 != pickUpArrey.end(); iter11++)
+		{
+			if (pickUpArrey[counter].destroy ==true)
+			{
+				cout << "Chon" << endl;
+				pickUpArrey.erase(iter11);
 				break;
 			}
 			counter++;
@@ -252,7 +292,7 @@ int main()
 		for (iter11 = pickUpArrey.begin(); iter11 != pickUpArrey.end(); iter11++)
 		{
 			pickUpArrey[counter].update();
-			window.draw(pickUpArrey[counter].rect);
+			//window.draw(pickUpArrey[counter].rect);
 			window.draw(pickUpArrey[counter].sprite);
 
 			counter++;
@@ -263,7 +303,8 @@ int main()
 		for (iter = projectileArrey.begin(); iter != projectileArrey.end(); iter++)
 		{
 			projectileArrey[counter].update();  // Update Projectile
-			window.draw(projectileArrey[counter].rect);
+			//window.draw(projectileArrey[counter].rect);
+			window.draw(projectileArrey[counter].sprite);
 			counter++;
 		}
 
@@ -295,6 +336,10 @@ int main()
 			window.draw(textDisplayArrey[counter].text);
 			counter++;
 		}
+
+		// Draw Gil (1)
+		text.setString("Life Power  :  " + to_string(Player1.gil));
+		window.draw(text);
 
 		// Update the window
 		window.display();
