@@ -20,21 +20,29 @@ void enemy::updateMovement()
 	
 	if (direction == 4)    //	Up
 	{
-		rect.move(0, -movementSpeed);
+		if (rect.getPosition().y > 25) {
+			rect.move(0, -movementSpeed);
+		}
 	}
 	else if (direction == 3)    // Down
 	{
-		rect.move(0, movementSpeed);
+		if (rect.getPosition().y < 596) {
+			rect.move(0, movementSpeed);
+		}
 	}
 	else if (direction==1)  // Left
 	{
-		rect.move(-movementSpeed,0);
-		sprite.setTextureRect(sf::IntRect((49 * 4) + 49 * counterRunning, 0, 49, 49));
+		if (rect.getPosition().x > 19) {
+			rect.move(-movementSpeed, 0);
+			sprite.setTextureRect(sf::IntRect((49 * 4) + 49 * counterRunning, 0, 49, 49));
+		}
 	}
 	else if (direction == 2)  // Right
 	{
-		rect.move(movementSpeed,0);
-		sprite.setTextureRect(sf::IntRect((49 * 6) + 49 * counterRunning, 0, 49, 49));
+		if (rect.getPosition().x < 800) {
+			rect.move(movementSpeed, 0);
+			sprite.setTextureRect(sf::IntRect((49 * 6) + 49 * counterRunning, 0, 49, 49));
+		}
 	}
 	else
 	{

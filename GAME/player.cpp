@@ -19,26 +19,34 @@ void player::update()
 void player::updateMovement()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-		rect.move(-movementSpeed, 0);
-		faceRight = 0;
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		direction = 3;
+		if (rect.getPosition().x > 19) {
+			rect.move(-movementSpeed, 0);
+			faceRight = 0;
+			sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
+			direction = 3;
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-		rect.move(movementSpeed, 0);
-		faceRight = 1;
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		direction = 4;
+		if (rect.getPosition().x < 780) {
+			rect.move(movementSpeed, 0);
+			faceRight = 1;
+			sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
+			direction = 4;
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-		rect.move(0, -movementSpeed);
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		direction = 1;
+		if (rect.getPosition().y > 29) {
+			rect.move(0, -movementSpeed);
+			sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
+			direction = 1;
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-		rect.move(0, movementSpeed);
-		sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
-		direction = 2;
+		if (rect.getPosition().y < 575) {
+			rect.move(0, movementSpeed);
+			sprite.setTextureRect(sf::IntRect(counterRunning * 641, 0, 641, 535));
+			direction = 2;
+		}
 	}
 	
 
