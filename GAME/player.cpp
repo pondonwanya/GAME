@@ -8,7 +8,6 @@ player::player()
 	rect.setFillColor(sf::Color::Blue);
 	sprite.setSize(sf::Vector2f(641, 535));
 	sprite.setOrigin(sprite.getSize() / 2.f);
-	
 }
 
 void player::update()

@@ -1,12 +1,11 @@
 #pragma once
 #include "entity.h"
 
-class wall : public entity
+class background : public entity
 {
 public:
 
-	wall();
+	background();
 	void update();
-	
 };
 

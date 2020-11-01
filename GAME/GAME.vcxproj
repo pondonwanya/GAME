@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="background.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
@@ -152,17 +153,16 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="random.cpp" />
-    <ClCompile Include="wall.cpp" />
     <ClCompile Include="textDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="background.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="pickUp.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="random.h" />
-    <ClInclude Include="wall.h" />
     <ClInclude Include="textDisplay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

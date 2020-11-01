@@ -6,7 +6,7 @@
 #include "random.h"
 #include "textDisplay.h"
 #include "pickUp.h"
-#include "wall.h"
+#include "background.h"
 
 using namespace std;
 #include <iostream>
@@ -47,6 +47,9 @@ int main()
 
 	sf::Texture Enemy;
 	Enemy.loadFromFile("png/enemy.png");
+
+	sf::Texture background;
+	background.loadFromFile("png/background.png");
 	
 	// Cteate a graphical text to display
 	sf::Font font;
@@ -55,6 +58,7 @@ int main()
 	sf::Text text("Gill", font, 25);
 	text.setCharacterSize(20);
 	text.setPosition(0, 0);
+
 
 	// class Object
 	class player Player1;
@@ -102,15 +106,9 @@ int main()
 	pickUp1.rect.setPosition(700, 500);
 	pickUpArrey.push_back(pickUp1);
 
-	//Wall Vector Arrey
-	vector<wall>::const_iterator iter15;
-	vector<wall> wallArrey;
-
-	class wall wall1;
-	//enemy1.sprite.setTexture(Enemy);
-
-	wall1.rect.setPosition(500, 500);
-	wallArrey.push_back(wall1);
+	// background
+	class background background1;
+	background1.sprite.setTexture(&background);
 
 	//Start the game loop
 	while (window.isOpen())
@@ -153,6 +151,7 @@ int main()
 
 			counter++;
 		}
+
 
 		if (elapsed2.asSeconds() >= 0.1)
 		{
@@ -287,6 +286,11 @@ int main()
 			}
 		}
 
+		//Draw background
+		window.draw(background1.sprite);
+		//window.draw(background1.rect);
+		background1.update();
+
 		//Draw Pickup Items
 		counter = 0;
 		for (iter11 = pickUpArrey.begin(); iter11 != pickUpArrey.end(); iter11++)
@@ -338,8 +342,9 @@ int main()
 		}
 
 		// Draw Gil (1)
-		text.setString("Life Power  :  " + to_string(Player1.gil));
+		text.setString("Life Power   " + to_string(Player1.gil));
 		window.draw(text);
+
 
 		// Update the window
 		window.display();
