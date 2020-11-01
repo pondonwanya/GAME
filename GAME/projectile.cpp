@@ -5,7 +5,8 @@ projectile::projectile()
 	rect.setSize(sf::Vector2f(50,50));
 	rect.setPosition(0, 0);
 	rect.setFillColor(sf::Color::Green);
-	sprite.setTextureRect(sf::IntRect(0, 0, 50, 50));
+	sprite.setSize(sf::Vector2f(20, 20));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 }
 
 void projectile::update()

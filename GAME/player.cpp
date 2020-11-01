@@ -2,16 +2,18 @@
 
 player::player()
 {
-	rect.setSize(sf::Vector2f(32, 32));
+	rect.setSize(sf::Vector2f(50, 50));
+	rect.setOrigin(rect.getSize() / 2.f);
 	rect.setPosition(400, 200);
 	rect.setFillColor(sf::Color::Blue);
-	sprite.setTextureRect(sf::IntRect(0, 0, 641, 535));
+	sprite.setSize(sf::Vector2f(641, 535));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 	
 }
 
 void player::update()
 {
-	sprite.setOrigin(rect.getSize().x/2,rect.getSize().y/2);
+	//sprite.setOrigin(rect.getSize().x/2,rect.getSize().y/2);
 	sprite.setPosition(rect.getPosition());
 }
 

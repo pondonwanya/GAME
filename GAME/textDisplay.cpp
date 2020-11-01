@@ -2,7 +2,7 @@
 
 textDisplay::textDisplay()
 {
-	text.setCharacterSize(30);
+	text.setCharacterSize(10);
 	text.setString(myString);
 }
 

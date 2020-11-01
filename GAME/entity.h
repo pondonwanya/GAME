@@ -7,7 +7,7 @@ class entity
 
 public:
 	sf::RectangleShape rect;
-	sf::Sprite sprite;
+	sf::RectangleShape sprite;
 	sf::Text text;
 
 private	:

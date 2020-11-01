@@ -5,7 +5,8 @@ pickUp::pickUp()
 	rect.setSize(sf::Vector2f(25, 32));
 	rect.setPosition(500, 500);
 	rect.setFillColor(sf::Color::Red);
-	sprite.setTextureRect(sf::IntRect(0, 0, 29, 35));
+	sprite.setSize(sf::Vector2f(29, 35));
+	sprite.setOrigin(sprite.getSize() / 2.f);
 }
 
 void pickUp::update()

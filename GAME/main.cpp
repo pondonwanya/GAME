@@ -43,7 +43,7 @@ int main()
 	Potion.loadFromFile("png/Potion1.png");
 
 	sf::Texture fireBall;
-	fireBall.loadFromFile("png/fireball.png");
+	fireBall.loadFromFile("png/bullet.png");
 
 	sf::Texture Enemy;
 	Enemy.loadFromFile("png/enemy.png");
@@ -58,7 +58,7 @@ int main()
 
 	// class Object
 	class player Player1;
-	Player1.sprite.setTexture(Sprite);
+	Player1.sprite.setTexture(&Sprite);
 
 	//Projectile Vector Arrey
 	vector<projectile>::const_iterator(iter);
@@ -66,7 +66,7 @@ int main()
 
 	//Projectile Object
 	class projectile projectile1;
-	projectile1.sprite.setTexture(fireBall);
+	projectile1.sprite.setTexture(&fireBall);
 
 	//Enemy Vector Arrey
 	vector<enemy>::const_iterator iter4;
@@ -74,7 +74,7 @@ int main()
 
 	//Enery Object
 	class enemy enemy1;
-	enemy1.sprite.setTexture(Enemy);
+	enemy1.sprite.setTexture(&Enemy);
 	//enemy1.sprite.setTextureRect(sf::IntRect(0,0,32,32));
 
 	enemy1.rect.setPosition(600, 200);
@@ -94,7 +94,7 @@ int main()
 
 	//Potion Object
 	class pickUp pickUp1;
-	pickUp1.sprite.setTexture(Potion);
+	pickUp1.sprite.setTexture(&Potion);
 	pickUp1.rect.setPosition(500, 500);
 	pickUp1.rect.setSize(sf::Vector2f(25, 32));
 	pickUpArrey.push_back(pickUp1);
