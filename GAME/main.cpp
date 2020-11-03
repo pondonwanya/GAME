@@ -14,6 +14,7 @@ using namespace std;
 int main()
 {
 	// Varible
+	srand(time(NULL));
 	sf::Clock clock;
 	sf::Clock clock2;
 	sf::Clock clock3;
@@ -40,7 +41,7 @@ int main()
 	playerSprite.setOrigin(sf::Vector2f(playerSprite.getTexture()->getSize().x /8, playerSprite.getTexture()->getSize().y/2));
 
 	sf::Texture Potion;
-	Potion.loadFromFile("png/Potion1.png");
+	Potion.loadFromFile("png/coin.gif");
 
 	sf::Texture fireBall;
 	fireBall.loadFromFile("png/bullet.png");
@@ -109,6 +110,61 @@ int main()
 	// background
 	class background background1;
 	background1.sprite.setTexture(&background);
+
+	// Custom Room
+	int roomSize = generateRandom(10) + 3;
+	int verticalDoorLocation = generateRandom(4);
+	int roomStartX = 0;
+	int roomStartY = 0;
+
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+	enemyArrey.push_back(enemy1);
 
 	//Start the game loop
 	while (window.isOpen())
@@ -342,7 +398,7 @@ int main()
 		}
 
 		// Draw Gil (1)
-		text.setString("Life Power   " + to_string(Player1.gil));
+		text.setString("Coin   " + to_string(Player1.gil));
 		window.draw(text);
 
 
