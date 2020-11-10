@@ -15,10 +15,12 @@ public:
 	int hp = 3;
 	int alive = true;
 	int enemyValue = 1;
+	int hpMax = 30;
 
 	enemy();
 
 	void update();
+	void updateHpBar();
 	void updateMovement();
 };
 

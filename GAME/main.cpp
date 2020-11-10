@@ -402,12 +402,16 @@ int main()
 		for (iter4 = enemyArrey.begin(); iter4 != enemyArrey.end(); iter4++)
 		{
 			enemyArrey[counter].update(); 
+			enemyArrey[counter].updateHpBar();
 			enemyArrey[counter].updateMovement();
-			window.draw(enemyArrey[counter].rect);
+			window.draw(enemyArrey[counter].rectHp);
+			//window.draw(enemyArrey[counter].rect);
 			window.draw(enemyArrey[counter].sprite);
 
 			counter++;
 		}
+
+
 
 		//Update doorwarp
 		warp1.update();
