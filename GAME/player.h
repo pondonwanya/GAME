@@ -15,6 +15,9 @@ public:
 	int gil = 0;
 	
 	player();
+
+	const sf::Vector2f& getPos() const;
+
 	void update();
 	void updateMovement();
 };

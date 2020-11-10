@@ -14,8 +14,10 @@ public:
 	int counter = 0;
 	int hp = 3;
 	int alive = true;
+	bool follow_or_not;
 
 	enemy();
+
 	void update();
 	void updateMovement();
 };

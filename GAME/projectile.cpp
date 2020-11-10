@@ -2,11 +2,11 @@
 
 projectile::projectile()
 {
-	rect.setSize(sf::Vector2f(50,50));
+	rect.setSize(sf::Vector2f(5,10));
 	rect.setPosition(0, 0);
 	rect.setFillColor(sf::Color::Green);
 	sprite.setSize(sf::Vector2f(20, 20));
-	sprite.setOrigin(sprite.getSize() / 2.f);
+	sprite.setOrigin(sprite.getSize() / 3.f);
 }
 
 void projectile::update()

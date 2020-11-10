@@ -7,6 +7,8 @@
 #include "textDisplay.h"
 #include "pickUp.h"
 #include "background.h"
+#include "background2.h"
+#include "warp.h"
 
 using namespace std;
 #include <iostream>
@@ -49,8 +51,19 @@ int main()
 	sf::Texture Enemy;
 	Enemy.loadFromFile("png/enemy.png");
 
-	sf::Texture background;
-	background.loadFromFile("png/background.png");
+	sf::Texture doorwarp;
+	doorwarp.loadFromFile("png/doorwarp.png");
+
+	sf::Texture bg1;
+	bg1.loadFromFile("png/background.png");
+	//sf::RectangleShape bg1(sf::Vector2f(4000, 1000));
+
+	sf::Texture bg2;
+	bg2.loadFromFile("png/background2.png");
+	/*sf::RectangleShape bg2(sf::Vector2f(4000, 1000));
+	bg2.setPosition(sf::Vector2f(-800, -2200));
+	bg2.setTexture(&background2);*/
+
 	
 	// Cteate a graphical text to display
 	sf::Font font;
@@ -101,15 +114,20 @@ int main()
 	class pickUp pickUp1;
 	pickUp1.sprite.setTexture(&Potion);
 	pickUp1.rect.setPosition(500, 500);
-	pickUp1.rect.setSize(sf::Vector2f(25, 32));
+	pickUp1.rect.setSize(sf::Vector2f(25, 35));
 	pickUpArrey.push_back(pickUp1);
 
-	pickUp1.rect.setPosition(700, 500);
+	pickUp1.rect.setPosition(600, 300);
 	pickUpArrey.push_back(pickUp1);
 
 	// background
 	class background background1;
-	background1.sprite.setTexture(&background);
+	background1.sprite.setTexture(&bg1);
+
+	// background
+	class background2 background2;
+	background2.sprite.setTexture(&bg2);
+	
 
 	// Custom Room
 	int roomSize = generateRandom(10) + 3;
@@ -125,46 +143,18 @@ int main()
 	enemyArrey.push_back(enemy1);
 	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
 	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
+	
+	//doorwarp Vector Arrey
+	vector<warp>::const_iterator iter2;
+	vector<warp> warpArrey;
+
+	//Potion Object
+	class warp warp1;
+	warp1.sprite.setTexture(&doorwarp);
+	warp1.rect.setPosition(780, 250);
+	warp1.rect.setSize(sf::Vector2f(50, 120));
+	warpArrey.push_back(warp1);
+
 
 	//Start the game loop
 	while (window.isOpen())
@@ -208,6 +198,22 @@ int main()
 			counter++;
 		}
 
+		//Player collides with door
+		counter = 0;
+		for (iter2 = warpArrey.begin(); iter2 != warpArrey.end(); iter2++)
+		{
+			if (Player1.rect.getGlobalBounds().intersects(warpArrey[counter].rect.getGlobalBounds()))
+			{
+				if (Player1.rect.getGlobalBounds().intersects(warpArrey[counter2].rect.getGlobalBounds()))
+				{
+					//cout << "Collision" << endl;
+					warpArrey[counter].isDoor = true;
+					Player1.rect.setPosition(sf::Vector2f(100,280));
+				}
+			}
+
+			counter++;
+		}
 
 		if (elapsed2.asSeconds() >= 0.1)
 		{
@@ -347,12 +353,13 @@ int main()
 		//window.draw(background1.rect);
 		background1.update();
 
+
 		//Draw Pickup Items
 		counter = 0;
 		for (iter11 = pickUpArrey.begin(); iter11 != pickUpArrey.end(); iter11++)
 		{
 			pickUpArrey[counter].update();
-			//window.draw(pickUpArrey[counter].rect);
+			window.draw(pickUpArrey[counter].rect);
 			window.draw(pickUpArrey[counter].sprite);
 
 			counter++;
@@ -363,7 +370,7 @@ int main()
 		for (iter = projectileArrey.begin(); iter != projectileArrey.end(); iter++)
 		{
 			projectileArrey[counter].update();  // Update Projectile
-			//window.draw(projectileArrey[counter].rect);
+			window.draw(projectileArrey[counter].rect);
 			window.draw(projectileArrey[counter].sprite);
 			counter++;
 		}
@@ -374,19 +381,26 @@ int main()
 		{
 			enemyArrey[counter].update(); 
 			enemyArrey[counter].updateMovement();
-			//window.draw(enemyArrey[counter].rect);
+			window.draw(enemyArrey[counter].rect);
 			window.draw(enemyArrey[counter].sprite);
 
 			counter++;
 		}
+
+		//Update doorwarp
+		warp1.update();
+
+		//Draw doorwarp
+		window.draw(warp1.rect);
+		window.draw(warp1.sprite);
 
 		//Update Player
 		Player1.update();
 		Player1.updateMovement();
 
 		//Draw Player
+		window.draw(Player1.rect);
 		window.draw(Player1.sprite);
-		//window.draw(Player1.rect);
 
 		//Draw Text
 		counter = 0;
@@ -400,7 +414,6 @@ int main()
 		// Draw Gil (1)
 		text.setString("Coin   " + to_string(Player1.gil));
 		window.draw(text);
-
 
 		// Update the window
 		window.display();

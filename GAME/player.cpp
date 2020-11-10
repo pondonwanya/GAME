@@ -11,6 +11,11 @@ player::player()
 	sprite.setTextureRect(sf::IntRect(0, 1080, 641, 542));
 }
 
+const sf::Vector2f& player::getPos() const
+{
+	return this->rect.getPosition();
+}
+
 void player::update()
 {
 	//sprite.setOrigin(rect.getSize().x/2,rect.getSize().y/2);
@@ -63,6 +68,4 @@ void player::updateMovement()
 	else {
 		sprite.setScale(-0.1, 0.1);
 	}
-
-
 }

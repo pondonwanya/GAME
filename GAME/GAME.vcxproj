@@ -146,6 +146,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="background.cpp" />
+    <ClCompile Include="background2.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
@@ -154,9 +156,12 @@
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="random.cpp" />
     <ClCompile Include="textDisplay.cpp" />
+    <ClCompile Include="warp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="background.h" />
+    <ClInclude Include="background2.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="pickUp.h" />
@@ -164,6 +169,7 @@
     <ClInclude Include="projectile.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="textDisplay.h" />
+    <ClInclude Include="warp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
