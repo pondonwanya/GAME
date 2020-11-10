@@ -1,4 +1,7 @@
 #include <SFML\Graphics.hpp>
+#include <fstream>
+#include <stdio.h>
+#include <string>
 #include "player.h"
 #include "entity.h"
 #include "Projectile.h"
@@ -59,7 +62,7 @@ int main()
 	//sf::RectangleShape bg1(sf::Vector2f(4000, 1000));
 
 	sf::Texture bg2;
-	bg2.loadFromFile("png/background2.png");
+	bg2.loadFromFile("png/background02.png");
 	/*sf::RectangleShape bg2(sf::Vector2f(4000, 1000));
 	bg2.setPosition(sf::Vector2f(-800, -2200));
 	bg2.setTexture(&background2);*/
@@ -207,7 +210,24 @@ int main()
 			if (Player1.rect.getGlobalBounds().intersects(warpArrey[counter].rect.getGlobalBounds()))
 			{
 					warpArrey[counter].isDoor = true;
+					background2.rect.setPosition(sf::Vector2f(1000, 2000));
+					background2.sprite.setPosition(sf::Vector2f(1000, 2000));
 					Player1.rect.setPosition(sf::Vector2f(100,280));
+
+					// Custom Room
+					int roomSize = generateRandom(10) + 3;
+					int verticalDoorLocation = generateRandom(4);
+					int roomStartX = 0;
+					int roomStartY = 0;
+
+					enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+					enemyArrey.push_back(enemy1);
+					enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+					enemyArrey.push_back(enemy1);
+					enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+					enemyArrey.push_back(enemy1);
+					enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
+					enemyArrey.push_back(enemy1);
 			}
 			counter++;
 		
@@ -350,6 +370,10 @@ int main()
 		window.draw(background1.sprite);
 		//window.draw(background1.rect);
 		background1.update();
+
+
+		window.draw(background2.sprite);
+		background2.update();
 
 
 		//Draw Pickup Items
