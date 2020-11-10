@@ -73,6 +73,10 @@ int main()
 	text.setCharacterSize(20);
 	text.setPosition(0, 0);
 
+	sf::Text text1("Gill", font, 25);
+	text1.setCharacterSize(20);
+	text1.setPosition(0, 20);
+
 
 	// class Object
 	class player Player1;
@@ -200,20 +204,13 @@ int main()
 
 		//Player collides with door
 		counter = 0;
-		for (iter2 = warpArrey.begin(); iter2 != warpArrey.end(); iter2++)
-		{
 			if (Player1.rect.getGlobalBounds().intersects(warpArrey[counter].rect.getGlobalBounds()))
 			{
-				if (Player1.rect.getGlobalBounds().intersects(warpArrey[counter2].rect.getGlobalBounds()))
-				{
-					//cout << "Collision" << endl;
 					warpArrey[counter].isDoor = true;
 					Player1.rect.setPosition(sf::Vector2f(100,280));
-				}
 			}
-
 			counter++;
-		}
+		
 
 		if (elapsed2.asSeconds() >= 0.1)
 		{
@@ -249,6 +246,7 @@ int main()
 				{
 					//cout << "Collision" << endl;
 					projectileArrey[counter].destroy = true;
+					Player1.gil1 += enemyArrey[counter].enemyValue;  // ยิงแล้วคะแนนเพิ่ม
 					
 					//Text Display
 					textDisplay1.text.setString(to_string(projectileArrey[counter].attactDamage));
@@ -414,6 +412,10 @@ int main()
 		// Draw Gil (1)
 		text.setString("Coin   " + to_string(Player1.gil));
 		window.draw(text);
+
+		// Draw Gil (2)
+		text1.setString("Score   " + to_string(Player1.gil1));
+		window.draw(text1);
 
 		// Update the window
 		window.display();
