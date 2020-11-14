@@ -16,6 +16,7 @@ public:
 	int alive = true;
 	int enemyValue = 1;
 	int hpMax = 30;
+	int randomTime, r;
 	sf::Vector2f posEnemy = rect.getPosition();
 
 	enemy();

@@ -1,4 +1,6 @@
 #include "enemy.h"
+#include <iostream>
+using namespace std;
 
 enemy::enemy()
 {
@@ -29,4 +31,37 @@ void enemy::updateHpBar()
 {
 	float hpPercent = (float)hp / (float)hpMax;
 	rectHp.setSize(sf::Vector2f(60.f * hpPercent, rectHp.getSize().y));
+}
+
+void enemy::updateMovement()
+{
+	r = rand() % 4;
+
+	cout << "%d " << r << endl;
+	
+	if (r == 0)
+	{
+		rect.move(-movementSpeed, 0.0f);   //left
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32*1, 32, 32));
+	}
+	if (r == 1)
+	{
+		rect.move(movementSpeed, 0.0f);   //Right
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32*2, 32, 32));
+	}
+	if (r == 2)
+	{
+		rect.move(0.0f,-movementSpeed);   //Up
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32*3, 32, 32));
+	}
+	if (r == 3)
+	{
+		rect.move(0.0f, movementSpeed);   //Down
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32*0, 32, 32));
+	}
+	counterRunning++;
+	if (counterRunning == 3)
+	{
+		counterRunning = 0;
+	}
 }

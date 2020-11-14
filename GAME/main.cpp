@@ -15,13 +15,15 @@
 #include "warp.h"
 #include "MainMenu.h"
 
-using namespace std;
 #include <iostream>
+using namespace std;
 
 int main()
 {
-	// Varible
+	// random part
 	srand(time(NULL));
+
+	// Varible
 	sf::Clock clock;
 	sf::Clock clock2;
 	sf::Clock clock3;
@@ -61,10 +63,7 @@ int main()
 	Enemy.loadFromFile("png/EnemySprite.png");
 
 	sf::Texture doorwarp;
-	doorwarp.loadFromFile("png/doorwarp.png");
-
-	sf::Texture doorwarp2;
-	doorwarp2.loadFromFile("png/doorwarp.png");
+	doorwarp.loadFromFile("png/door2.png");
 
 	sf::Texture bg1;
 	bg1.loadFromFile("png/bg2.png");
@@ -125,7 +124,17 @@ int main()
 	enemy1.sprite.setTexture(&Enemy);
 	//enemy1.sprite.setTextureRect(sf::IntRect(0,0,32,32));
 
-	enemy1.rect.setPosition(600, 200);
+	enemy1.rect.setPosition(810, 610);
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition(-1, 620);
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition(820, -1);
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition(-5, 640);
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition(815, -3);
+	enemyArrey.push_back(enemy1);
+	enemy1.rect.setPosition(805, -4);
 	enemyArrey.push_back(enemy1);
 
 	//Text Vector Arrey
@@ -162,22 +171,6 @@ int main()
 	class background3 background3;
 	background3.sprite.setTexture(&bg3);
 	
-
-	//// Custom Room
-	int roomSize = generateRandom(10) + 3;
-	/*int verticalDoorLocation = generateRandom(4);
-	int roomStartX = 0;
-	int roomStartY = 0;
-
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);
-	enemy1.rect.setPosition((roomSize * 50), (roomSize * 50));
-	enemyArrey.push_back(enemy1);*/
-	
 	//doorwarp Vector Arrey
 	vector<warp>::const_iterator iter2;
 	vector<warp> warpArrey;
@@ -185,16 +178,9 @@ int main()
 	//Potion Object
 	class warp warp1;
 	warp1.sprite.setTexture(&doorwarp);
-	warp1.rect.setPosition(780, 250);
-	warp1.rect.setSize(sf::Vector2f(50, 120));
+	warp1.rect.setPosition(750, 250);
+	warp1.rect.setSize(sf::Vector2f(96, 54));
 	warpArrey.push_back(warp1);
-
-	//Potion Object
-	class warp warp2;
-	warp2.sprite.setTexture(&doorwarp2);
-	warp2.rect.setPosition(780, 250);
-	warp2.rect.setSize(sf::Vector2f(50, 120));
-	warpArrey.push_back(warp2);
 
 
 	//
@@ -311,6 +297,13 @@ int main()
 
 			while (state1)
 			{
+				// random part
+				int randomTime, r;
+				srand(time(NULL));
+
+				r = rand() % 4;
+
+				cout  << "r = " <<r << endl;
 				// Clock
 				sf::Time elapsed1 = clock.getElapsedTime();
 				sf::Time elapsed2 = clock.getElapsedTime();
@@ -474,12 +467,12 @@ int main()
 
 
 
-				//Spawn Enemies (Y-Key)
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
-				{
-					enemy1.rect.setPosition(generateRandom(window.getSize().x), generateRandom(window.getSize().y));
-					enemyArrey.push_back(enemy1);
-				}
+				////Spawn Enemies (Y-Key)
+				//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
+				//{
+				//	enemy1.rect.setPosition(generateRandom(window.getSize().x), generateRandom(window.getSize().y));
+				//	enemyArrey.push_back(enemy1);
+				//}
 
 				//Fires Missle (Space Bar)
 				if (elapsed1.asSeconds() >= 0.1)
@@ -551,13 +544,9 @@ int main()
 					{
 						enemyArrey[counter].rect.move(0, playerMovementSpeed);
 					}
-					counterRunning++;
-					if (counterRunning == 2)
-					{
-						counterRunning = 0;
-					}
 
 					enemyArrey[counter].update();
+					enemyArrey[counter].updateMovement();
 					enemyArrey[counter].updateHpBar();
 					window.draw(enemyArrey[counter].rectHp);
 					//window.draw(enemyArrey[counter].rect);
@@ -568,6 +557,7 @@ int main()
 
 				//Update doorwarp
 				warp1.update();
+
 
 				//Draw doorwarp
 				window.draw(warp1.rect);
