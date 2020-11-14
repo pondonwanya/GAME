@@ -52,7 +52,7 @@ int main()
 	playerSprite.setOrigin(sf::Vector2f(playerSprite.getTexture()->getSize().x /8, playerSprite.getTexture()->getSize().y/2));
 
 	sf::Texture Potion;
-	Potion.loadFromFile("png/coin.gif");
+	Potion.loadFromFile("png/coin01.png");
 
 	sf::Texture fireBall;
 	fireBall.loadFromFile("png/bullet.png");
@@ -144,7 +144,7 @@ int main()
 	class pickUp pickUp1;
 	pickUp1.sprite.setTexture(&Potion);
 	pickUp1.rect.setPosition(500, 500);
-	pickUp1.rect.setSize(sf::Vector2f(25, 35));
+	pickUp1.rect.setSize(sf::Vector2f(63.5, 64));
 	pickUpArrey.push_back(pickUp1);
 
 	pickUp1.rect.setPosition(600, 300);
@@ -513,6 +513,7 @@ int main()
 				for (iter11 = pickUpArrey.begin(); iter11 != pickUpArrey.end(); iter11++)
 				{
 					pickUpArrey[counter].update();
+					pickUpArrey[counter].updateMovement();
 					//window.draw(pickUpArrey[counter].rect);
 					window.draw(pickUpArrey[counter].sprite);
 
