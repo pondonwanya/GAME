@@ -45,13 +45,16 @@
     <ClCompile Include="background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="warp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="background2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="background3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,13 +83,16 @@
     <ClInclude Include="background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="warp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="background2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="background3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

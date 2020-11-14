@@ -147,10 +147,11 @@
   <ItemGroup>
     <ClCompile Include="background.cpp" />
     <ClCompile Include="background2.cpp" />
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="background3.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="pickUp.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="projectile.cpp" />
@@ -161,9 +162,10 @@
   <ItemGroup>
     <ClInclude Include="background.h" />
     <ClInclude Include="background2.h" />
-    <ClInclude Include="Button.h" />
+    <ClInclude Include="background3.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="pickUp.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="projectile.h" />

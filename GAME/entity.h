@@ -13,10 +13,6 @@ public:
 	sf::Text text;
 	sf::Font* font;
 
-	sf::Color idleColor;
-	sf::Color hoverColor;
-	sf::Color activeColor;
-
 private	:
 
 protected:

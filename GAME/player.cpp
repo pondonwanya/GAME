@@ -9,17 +9,28 @@ player::player()
 	sprite.setSize(sf::Vector2f(641, 535));
 	sprite.setOrigin(sprite.getSize() / 2.f);
 	sprite.setTextureRect(sf::IntRect(0, 1080, 641, 542));
-}
 
-const sf::Vector2f& player::getPos() const
-{
-	return this->rect.getPosition();
+	rectHp.setSize(sf::Vector2f(200, 20));
+	rectHp.setFillColor(sf::Color::Red);
+
+	rectHpBack = rectHp;
+	rectHpBack.setFillColor(sf::Color(25, 25, 25, 200));
 }
 
 void player::update()
 {
 	//sprite.setOrigin(rect.getSize().x/2,rect.getSize().y/2);
 	sprite.setPosition(rect.getPosition());
+	rectHp.setPosition(200, 30);
+}
+
+void player::updateHpBar()
+{
+	printf("%d \n", hp);
+	if (hp < 0) {
+		hp = 0;
+	}
+	rectHp.setSize(sf::Vector2f(hp, rectHp.getSize().y));
 }
 
 void player::updateMovement()
