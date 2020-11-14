@@ -41,7 +41,7 @@ void enemy::updateMovement()
 	
 	if (r == 0)
 	{
-		rect.move(-movementSpeed, 0.0f);   //left
+			rect.move(-movementSpeed, 0.0f);   //left
 		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32*1, 32, 32));
 	}
 	if (r == 1)
