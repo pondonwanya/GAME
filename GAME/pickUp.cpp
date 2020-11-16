@@ -25,3 +25,24 @@ void pickUp::updateMovement()
 		}
 }
 
+void pickUp::updateMovement3()
+{
+	counterRunning++;
+	sprite.setTextureRect(sf::IntRect(counterRunning* 48,48 *6, 48, 48));
+	if (counterRunning== 9)
+	{
+		counterRunning = 0;
+	}
+}
+
+void pickUp::updateMovement2()
+{
+	sprite.setScale(1.5, 1.5);
+	counterRunning++;
+	sprite.setTextureRect(sf::IntRect(counterRunning *500, 0,500, 500));
+	if (counterRunning ==5)
+	{
+		counterRunning = 0;
+	}
+}
+

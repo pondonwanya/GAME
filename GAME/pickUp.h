@@ -13,4 +13,6 @@ public:
 	pickUp();
 	void update();
 	void updateMovement();
+	void updateMovement2();
+	void updateMovement3();
 };

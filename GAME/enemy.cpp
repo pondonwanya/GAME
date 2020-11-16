@@ -65,3 +65,69 @@ void enemy::updateMovement()
 		counterRunning = 0;
 	}
 }
+
+void enemy::updateMovement2()
+{
+	r = rand() % 4;
+
+	cout << "%d " << r << endl;
+
+	if (r == 0)
+	{
+		rect.move(-movementSpeed, 0.0f);   //left
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 5, 32, 32));
+	}
+	if (r == 1)
+	{
+		rect.move(movementSpeed, 0.0f);   //Right
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 6, 32, 32));
+	}
+	if (r == 2)
+	{
+		rect.move(0.0f, -movementSpeed);   //Up
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 7, 32, 32));
+	}
+	if (r == 3)
+	{
+		rect.move(0.0f, movementSpeed);   //Down
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 4, 32, 32));
+	}
+	counterRunning++;
+	if (counterRunning == 8)
+	{
+		counterRunning = 6;
+	}
+}
+
+void enemy::updateMovement3()
+{
+	r = rand() % 4;
+
+	cout << "%d " << r << endl;
+
+	if (r == 0)
+	{
+		rect.move(-movementSpeed, 0.0f);   //left
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 5, 32, 32));
+	}
+	if (r == 1)
+	{
+		rect.move(movementSpeed, 0.0f);   //Right
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 6, 32, 32));
+	}
+	if (r == 2)
+	{
+		rect.move(0.0f, -movementSpeed);   //Up
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 7, 32, 32));
+	}
+	if (r == 3)
+	{
+		rect.move(0.0f, movementSpeed);   //Down
+		sprite.setTextureRect(sf::IntRect(counterRunning * 32, 32 * 4, 32, 32));
+	}
+	counterRunning++;
+	if (counterRunning == 5)
+	{
+		counterRunning = 3;
+	}
+}

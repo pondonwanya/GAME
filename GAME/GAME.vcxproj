@@ -156,6 +156,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="random.cpp" />
+    <ClCompile Include="Textbox.cpp" />
     <ClCompile Include="textDisplay.cpp" />
     <ClCompile Include="warp.cpp" />
   </ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="random.h" />
+    <ClInclude Include="Textbox.h" />
     <ClInclude Include="textDisplay.h" />
     <ClInclude Include="warp.h" />
   </ItemGroup>

@@ -10,6 +10,8 @@ public:
 	int movementLength = 50;
 	int attactDamage = 2;
 	int counterRunning = 0;
+	int counterRunning2 = 6;
+	int counterRunning3 = 3;
 	int direction = 0;   //  1-up , 2-down 3-left , 4-right
 	int counter = 0;
 	int hp = 3;
@@ -24,5 +26,7 @@ public:
 	void update();
 	void updateHpBar();
 	void updateMovement();
+	void updateMovement2();
+	void updateMovement3();
 };
 
